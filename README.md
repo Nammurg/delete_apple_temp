@@ -1,37 +1,5 @@
-Here’s a Bash script you can use on your Unraid server to check the array for Apple temporary files (commonly named `._*` and `.DS_Store`) and delete them. Save the script to a file (e.g., `clean_apple_temp_files.sh`) and run it from your terminal.
+This is a Bash script you can use on your Unraid server to check the array for Apple temporary files (commonly named `._*` and `.DS_Store`) and delete them. Save the script to a file (e.g., `clean_apple_temp_files.sh`) and run it from your terminal.
 
-### Script: `clean_apple_temp_files.sh`
-
-```bash
-#!/bin/bash
-
-# Title: Clean Apple Temp Files on Unraid Array
-# Description: Finds and deletes Apple temporary files like ._ files and .DS_Store on the Unraid array.
-
-# Define array paths
-ARRAY_PATHS="/mnt/disk* /mnt/user"
-
-echo "Starting cleanup of Apple temporary files on Unraid array..."
-
-# Function to delete files
-delete_apple_temp_files() {
-    local path=$1
-
-    echo "Scanning $path for Apple temp files..."
-    find "$path" -type f \( -name "._*" -o -name ".DS_Store" \) -exec rm -v {} \;
-}
-
-# Loop through array paths
-for path in $ARRAY_PATHS; do
-    if [ -d "$path" ]; then
-        delete_apple_temp_files "$path"
-    else
-        echo "Warning: $path does not exist or is not accessible. Skipping..."
-    fi
-done
-
-echo "Cleanup completed!"
-```
 
 ### Steps to Use the Script
 
